@@ -10,9 +10,20 @@
 </head>
 <body>
 
-<div class="shell-switch">
-  <button id="btnShellCustomer" class="active" onclick="setShell('customer')">Customer app</button>
-  <button id="btnShellAdmin" onclick="setShell('admin')">Admin panel</button>
+<div class="staff-access-wrap">
+  <button id="staffAccessBtn" class="staff-access-btn" onclick="openAdminGate()">Staff access</button>
+</div>
+
+<div class="admin-gate" id="adminGate" role="dialog" aria-modal="true" aria-label="Staff access">
+  <div class="admin-gate-card">
+    <h3>Staff access</h3>
+    <p>Enter the password to open the admin panel.</p>
+    <input id="adminPasswordInput" type="password" placeholder="Password">
+    <div class="admin-gate-actions">
+      <button class="secondary-btn" type="button" onclick="closeAdminGate()">Cancel</button>
+      <button class="primary-btn" type="button" onclick="submitAdminPassword()">Enter</button>
+    </div>
+  </div>
 </div>
 
 <!-- ============ CUSTOMER APP ============ -->

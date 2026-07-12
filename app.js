@@ -95,14 +95,42 @@ function statusLabel(s){
   return s==='received'? t('received') : s==='preparing'? t('preparing') : t('ready');
 }
 
-/* ========================= SHELL SWITCH ========================= */
+/* ========================= STAFF ACCESS ========================= */
+const ADMIN_PASSWORD = 'staff2026';
+
+function openAdminGate(){
+  const gate = document.getElementById('adminGate');
+  const input = document.getElementById('adminPasswordInput');
+  if(gate){ gate.classList.add('active'); }
+  if(input){ input.value=''; input.focus(); }
+}
+
+function closeAdminGate(){
+  const gate = document.getElementById('adminGate');
+  if(gate){ gate.classList.remove('active'); }
+}
+
+function submitAdminPassword(){
+  const input = document.getElementById('adminPasswordInput');
+  if(!input) return;
+  if(input.value.trim() === ADMIN_PASSWORD){
+    closeAdminGate();
+    setShell('admin');
+    showToast('Admin access granted');
+  } else {
+    input.value='';
+    input.focus();
+    showToast('Incorrect password');
+  }
+}
+
 function setShell(which){
   session.shell = which;
-  document.getElementById('btnShellCustomer').classList.toggle('active', which==='customer');
-  document.getElementById('btnShellAdmin').classList.toggle('active', which==='admin');
+  const staffBtn = document.getElementById('staffAccessBtn');
+  if(staffBtn){ staffBtn.textContent = which==='admin' ? 'Exit staff' : 'Staff access'; }
   document.getElementById('customerStage').style.display = which==='customer' ? 'flex' : 'none';
   document.getElementById('adminWrap').classList.toggle('active', which==='admin');
-  if(which==='admin') renderAdmin(); else renderCustomer();
+  if(which==='admin') renderAdmin(); else { renderCustomer(); closeAdminGate(); }
 }
 
 /* ========================= CUSTOMER RENDER ========================= */
