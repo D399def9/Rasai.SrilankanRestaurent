@@ -127,7 +127,7 @@ function submitAdminPassword(){
 function setShell(which){
   session.shell = which;
   const staffBtn = document.getElementById('staffAccessBtn');
-  if(staffBtn){ staffBtn.textContent = which==='admin' ? 'Exit staff' : 'Staff access'; }
+  if(staffBtn){ staffBtn.classList.toggle('active', which==='admin'); }
   document.getElementById('customerStage').style.display = which==='customer' ? 'flex' : 'none';
   document.getElementById('adminWrap').classList.toggle('active', which==='admin');
   if(which==='admin') renderAdmin(); else { renderCustomer(); closeAdminGate(); }
@@ -264,6 +264,7 @@ function renderCustomer(){
       <button class="${['home','menu'].includes(session.page)?'active':''}" onclick="setPage('home')"><span class="ic">🍽️</span>${t('homeTab')}</button>
       <button class="${session.page==='cart'?'active':''}" onclick="setPage('cart')"><span class="ic">🛒</span>${t('cartTab')}${cartCount()?` (${cartCount()})`:''}</button>
       <button class="${session.page==='info'?'active':''}" onclick="setPage('info')"><span class="ic">ℹ️</span>${t('infoTab')}</button>
+      <button id="staffAccessBtn" class="staff-access-btn ${session.shell==='admin'?'active':''}" onclick="openAdminGate()"><span class="ic">🔐</span>Staff</button>
     </div>`;
   }
 
