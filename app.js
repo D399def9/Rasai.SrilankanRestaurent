@@ -27,7 +27,7 @@ const STR = {
 
 let nextId = 100;
 const db = {
-  restaurant:{ name:"Osteria Bricco", hours:"Tue–Sun · 12:00–15:00 & 19:00–23:00", phone:"+39 041 555 0142",
+  restaurant:{ name:"𝓡𝓪𝓼𝓪𝓲", hours:"Tue–Sun · 12:00–15:00 & 19:00–23:00", phone:"+39 041 555 0142",
     address:"Via delle Vigne 12, San Donà di Piave (VE)" },
   categories:[
     {id:'antipasti', en:'Starters', it:'Antipasti'},
