@@ -27,7 +27,7 @@ const STR = {
 
 let nextId = 100;
 const db = {
-  restaurant:{ name:"𝓡𝓪𝓼𝓪𝓲", hours:"Tue–Sun · 12:00–15:00 & 19:00–23:00", phone:"+39 041 555 0142",
+  restaurant:{ name:"Rasai", hours:"Tue–Sun · 12:00–15:00 & 19:00–23:00", phone:"+39 041 555 0142",
     address:"Via delle Vigne 12, San Donà di Piave (VE)" },
   categories:[
     {id:'antipasti', en:'Starters', it:'Antipasti'},
@@ -276,9 +276,9 @@ function headerBlock(back){
   const titleMap = {home:t('welcome')+' '+db.restaurant.name, menu:t('menu'), cart:t('cart'), checkout:t('checkout'), tracking:t('track'), info:t('info')};
   const title = session.page==='home' ? db.restaurant.name : titleMap[session.page];
   return `<div class="app-header">
-    <div class="eyebrow">${session.page==='home'?t('tagline'):'Osteria Bricco'}</div>
+    <div class="eyebrow">${session.page==='home'?t('tagline'):db.restaurant.name}</div>
     <h1>${title}</h1>
-    ${session.page==='home' ? `<div class="sub">${db.restaurant.hours}</div>` : ''}
+    ${session.page==='home' ? `<div class="sub">Authentic Sri Lankan Cuisine 🇱🇰</div><div class="hours">${db.restaurant.hours}</div>` : ''}
     <div class="lang-toggle">
       <button class="${session.lang==='en'?'active':''}" onclick="setLang('en')">EN</button>
       <button class="${session.lang==='it'?'active':''}" onclick="setLang('it')">IT</button>
