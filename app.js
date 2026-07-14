@@ -27,36 +27,31 @@ const STR = {
 
 let nextId = 100;
 const db = {
-  restaurant:{ name:"Rasai", hours:"Tue–Sun · 12:00–15:00 & 19:00–23:00", phone:"+39 041 555 0142",
-    address:"Via delle Vigne 12, San Donà di Piave (VE)" },
+  restaurant: { name: 'Rasai', hours: 'Tue–Sun · 12:00–15:00 & 19:00–23:00', phone:'+94 77 123 4567', address: 'Colombo, Sri Lanka' },
+  lang: 'en',
   categories:[
-    {id:'antipasti', en:'Starters', it:'Antipasti'},
-    {id:'primi', en:'First courses', it:'Primi'},
-    {id:'secondi', en:'Main courses', it:'Secondi'},
-    {id:'dolci', en:'Desserts', it:'Dolci'},
+    {id:'short-eats', en:'Short Eats', it:'Stuzzichini'},
+    {id:'mains', en:'Mains', it:'Piatti Forti'},
+    {id:'sambols', en:'Sambols & Sides', it:'Contorni'},
+    {id:'dolci', en:'Desserts', it:'Dolci'}
   ],
   dishes:[
-    {id:1, cat:'antipasti', en:'Burrata & Anchovy Toast', it:'Burrata e alici su crostone', price:9.5, photo:'🧀', available:true, popular:true,
-      descEn:'Creamy burrata, Cantabrian anchovies, grilled sourdough.', descIt:'Burrata cremosa, alici del Cantabrico, pane tostato.'},
-    {id:2, cat:'antipasti', en:'Beef Carpaccio', it:'Carpaccio di manzo', price:12, photo:'🥩', available:true, popular:false,
-      descEn:'Thin-sliced beef, rocket, aged parmesan, lemon.', descIt:'Manzo affettato sottile, rucola, parmigiano stagionato, limone.'},
-    {id:3, cat:'primi', en:'Tagliatelle al Ragù', it:'Tagliatelle al ragù', price:13, photo:'🍝', available:true, popular:true,
-      descEn:'Hand-cut egg pasta, slow-cooked beef & pork ragù.', descIt:"Pasta all'uovo tagliata a mano, ragù di manzo e maiale."},
-    {id:4, cat:'primi', en:'Risotto al Nero di Seppia', it:'Risotto al nero di seppia', price:15, photo:'🦑', available:true, popular:false,
-      descEn:'Squid-ink risotto, cuttlefish, chilli, parsley.', descIt:'Risotto al nero, seppioline, peperoncino, prezzemolo.'},
-    {id:5, cat:'secondi', en:'Grilled Branzino', it:'Branzino alla griglia', price:22, photo:'🐟', available:true, popular:true,
-      descEn:'Whole sea bass, charcoal grilled, salmoriglio sauce.', descIt:'Branzino intero alla brace, salsa al salmoriglio.'},
-    {id:6, cat:'secondi', en:'Tagliata di Manzo', it:'Tagliata di manzo', price:24, photo:'🥩', available:false, popular:false,
-      descEn:'Sliced ribeye, rosemary potatoes, balsamic reduction.', descIt:'Controfiletto a fette, patate al rosmarino, riduzione di balsamico.'},
-    {id:7, cat:'dolci', en:'Tiramisù della Casa', it:'Tiramisù della casa', price:7, photo:'🍰', available:true, popular:true,
-      descEn:'Mascarpone, espresso-soaked savoiardi, cocoa.', descIt:'Mascarpone, savoiardi al caffè, cacao amaro.'},
-    {id:8, cat:'dolci', en:'Panna Cotta & Berries', it:'Panna cotta ai frutti di bosco', price:6.5, photo:'🍓', available:true, popular:false,
-      descEn:'Vanilla panna cotta, forest berry compote.', descIt:'Panna cotta alla vaniglia, composta di frutti di bosco.'},
+    {id:1, cat:'short-eats', en:'Mutton Rolls', it:'Involtini', price:8.5, photo:'🌯', available:true, popular:true,
+      descEn:'Spiced minced mutton and potato fried to golden perfection.', descIt:'Carne di montone speziata e patate fritti.'},
+    {id:2, cat:'short-eats', en:'Egg Hopper (Appa)', it:'Egg Hopper', price:4.5, photo:'🍳', available:true, popular:false,
+      descEn:'Bowl-shaped fermented rice flour crepe with a soft-boiled egg in the center.', descIt:'Crepe di farina di riso fermentata con uovo al centro.'},
+    {id:3, cat:'mains', en:'Kottu Roti (Chicken)', it:'Kottu Roti', price:14.5, photo:'🥘', available:true, popular:true,
+      descEn:'Shredded roti stir-fried with vegetables, egg, aromatic spices, and curry chicken.', descIt:'Roti sminuzzato e saltato con verdure, uova, spezie e pollo al curry.'},
+    {id:4, cat:'mains', en:'Ceylon Black Pork Curry', it:'Curry nero di maiale', price:16, photo:'🍲', available:true, popular:false,
+      descEn:'Tender pork belly slow-cooked in a dark, heavily roasted Sri Lankan spice blend.', descIt:'Pancetta di maiale stufata lentamente con spezie tostate.'},
+    {id:5, cat:'sambols', en:'Pol Sambol', it:'Pol Sambol', price:3.5, photo:'🥥', available:true, popular:true,
+      descEn:'Freshly grated coconut ground with red onions, dried chilies, lime, and salt.', descIt:'Cocco grattugiato fresco, cipolla rossa, peperoncino e lime.'},
+    {id:6, cat:'dolci', en:'Watalappan', it:'Watalappan', price:7, photo:'🍮', available:true, popular:true,
+      descEn:'Traditional spiced coconut custard sweetened with dark kithul jaggery and cardamom.', descIt:'Budino di latte di cocco speziato al cardamomo e zucchero di palma kithul.'}
   ],
-  orders:[], // {id, ticketNo, name, phone, method, items:[{dishId,qty}], status, total, time}
-  promotions:[
-    {id:1, title:'Weekday Lunch Set', desc:'First course + water, €12 · Tue–Fri 12:00–15:00', active:true},
-    {id:2, title:'Tiramisù on the house', desc:'Free dessert for orders over €60', active:false},
+  orders: [],
+  promotions: [
+    {id:1, title:'Welcome Offer', desc:'Use code RASAI20 for 20% off your first delivery order.', active:true}
   ]
 };
 
@@ -64,7 +59,7 @@ const session = {
   shell:'customer',
   lang:'en',
   page:'home',
-  activeCat:'antipasti',
+  activeCat:'short-eats',
   search:'',
   cart:{}, // dishId -> qty
   user:null, // {name, phone, method}
@@ -273,18 +268,17 @@ function renderCustomer(){
 }
 
 function headerBlock(back){
-  const titleMap = {home:t('welcome')+' '+db.restaurant.name, menu:t('menu'), cart:t('cart'), checkout:t('checkout'), tracking:t('track'), info:t('info')};
-  const title = session.page==='home' ? db.restaurant.name : titleMap[session.page];
+  // Compact header: inline flag and title, small subtitle
   return `<div class="app-header">
-    <div class="eyebrow">${session.page==='home'?t('tagline'):db.restaurant.name}</div>
-    <h1>${title}</h1>
-    ${session.page==='home' ? `<div class="sub">Authentic Sri Lankan Cuisine 🇱🇰</div><div class="hours">${db.restaurant.hours}</div>` : ''}
-    <div class="lang-toggle">
-      <button class="${session.lang==='en'?'active':''}" onclick="setLang('en')">EN</button>
-      <button class="${session.lang==='it'?'active':''}" onclick="setLang('it')">IT</button>
-    </div>
+    <div class="lang-toggle" style="position:absolute;right:12px;top:12px;">` +
+      `<button style="border:none;background:transparent;color:rgba(255,255,255,0.85);font-weight:700;padding:6px 8px;" onclick="toggleLang()">${session.lang==='en'?'IT':'EN'}</button>` +
+    `</div>
+    <h1>${db.restaurant.name} <span style="font-size:22px;">🇱🇰</span></h1>
+    ${session.page==='home' ? `<div class="sub">Authentic Sri Lankan Cuisine</div>` : ''}
   </div>`;
 }
+
+function toggleLang(){ session.lang = session.lang==='en' ? 'it' : 'en'; renderCustomer(); }
 
 function dishListHtml(){
   const dishes = db.dishes.filter(d=> d.cat===session.activeCat &&

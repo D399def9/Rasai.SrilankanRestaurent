@@ -1,22 +1,25 @@
 
-  :root{
-    --primary:#7A1F2A;
-    --primary-dark:#57141E;
-    --primary-light:#A32D3F;
+  :root {
+  /* Wine Red Base & Gradients */
+  --primary: #7A1F2A;
+  --primary-dark: #4A1017;
+  --primary-light: #9E2B3A;
 
-    --gold:#D4A437;
-    --gold-dark:#B98924;
+  /* Saffron Gold Accents */
+  --gold: #D4A437;
+  --gold-dark: #B98924;
 
-    --cream:#FBF6F0;
-    --cream-light:#FFFDFC;
+  /* Smooth Warm Backgrounds */
+  --cream: #FAF6F0;
+  --cream-light: #FFFFFF;
 
-    --text:#2B2B2B;
-    --text-soft:#6C625B;
+  /* Typography */
+  --text: #2B2525;
+  --text-soft: #6E5F61;
+  --line: #E5DAD8;
 
-    --line:#E5D7CB;
-
-    --radius:16px;
-  }
+  --radius: 16px;
+}
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -66,39 +69,40 @@
     min-height:100vh; position:relative; overflow-x:hidden;
   }
   .screen{ min-height:100vh; height:100vh; height:100dvh; }
-  .app-header{
-    position:relative;
-    overflow:hidden;
-    color:white;
-    padding:36px 20px 22px;
-    border-bottom-left-radius:28px;
-    border-bottom-right-radius:28px;
-    background:
-      linear-gradient(
-        rgba(122,31,42,.88),
-        rgba(87,20,30,.92)
-      ),
-      url("images/header.jpg");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    box-shadow: 0 10px 30px rgba(0,0,0,.18);
-  }
-  .app-header::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background: radial-gradient(circle at top, rgba(255,255,255,.08), transparent 60%);
-    pointer-events:none;
-  }
-  .app-header > *{ position:relative; z-index:2; }
-  .app-header .eyebrow{ font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--gold); font-weight:700; }
-  .app-header h1{ color:white; font-size:48px; margin:6px 0 6px; text-shadow:0 3px 12px rgba(0,0,0,.45); }
-  .app-header .sub{ font-size:14px; color:rgba(255,255,255,0.92); margin-bottom:6px; }
-  .app-header .hours{ font-size:12px; color:rgba(255,255,255,0.82); }
-  .lang-toggle{ position:absolute; top:34px; right:20px; display:flex; background:rgba(255,255,255,0.14); border-radius:999px; overflow:hidden;}
-  .lang-toggle button{ border:none; background:transparent; color:rgba(255,255,255,0.75); font-size:11px; font-weight:700; padding:6px 10px;}
-  .lang-toggle button.active{ background:var(--gold); color:var(--text);}
+/* --- Slimmed Down Header Style --- */
+.app-header {
+  position: relative;
+  overflow: hidden;
+  color: white;
+  /* Reduced padding to shrink the vertical height significantly */
+  padding: 24px 16px 16px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  box-shadow: 0 4px 20px rgba(74, 16, 23, 0.15);
+}
+
+/* Title and Flag on a single compact line */
+.app-header h1 {
+  color: white;
+  font-size: 26px; /* Smaller font footprint */
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Spaces out the text and the flag nicely */
+}
+
+/* Inline subtitle */
+.app-header .sub {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 4px;
+}
 
   .cats{ display:flex; gap:8px; padding:14px 16px 4px; overflow-x:auto; }
   .cat-pill{ flex:none; border:1px solid var(--line); background:#fff; padding:8px 14px; border-radius:999px; font-size:12.5px; font-weight:600; color:var(--text-soft);}
